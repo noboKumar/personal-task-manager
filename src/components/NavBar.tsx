@@ -3,10 +3,12 @@ import { Button } from "./ui/button";
 
 const NavBar = () => {
   return (
-    <div className="border-b-2 bg-gray-100">
-      <div className="flex justify-between px-5 py-2 w-10/12 mx-auto">
+    <div className="border-b-2 bg-red-50">
+      <div className="flex justify-between p-5 w-10/12 mx-auto">
         <div>
-          <h1 className="text-2xl font-medium">ToDo</h1>
+          <Button variant="ghost" className="text-2xl font-bold">
+            ToDo
+          </Button>
         </div>
         <div>
           <Button variant="outline">Sign In</Button>
