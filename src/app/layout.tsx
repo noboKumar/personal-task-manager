@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Personal Task Manager",
   description:
     "A simple and efficient app to manage your daily tasks, track progress, and stay organized.",
+  icons: {
+    icon: "/tasks.png",
+  },
 };
 
 export default function RootLayout({
