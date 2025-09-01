@@ -1,5 +1,10 @@
 "use client";
-import { onAuthStateChanged, User } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  User,
+  UserCredential,
+} from "firebase/auth";
 import React, { ReactNode, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { auth } from "@/lib/firebase.config";
@@ -18,11 +23,20 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
+  // login user
+  const loginUser = (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   const userInfo = {
     user,
     setUser,
     loading,
     setLoading,
+    loginUser,
   };
   return (
     <div>
