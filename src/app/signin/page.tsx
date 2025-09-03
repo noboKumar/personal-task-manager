@@ -4,11 +4,13 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const auth = useContext(AuthContext);
   if (!auth) throw new Error("AuthContext not provided");
   const { loginUser } = auth;
+  const router = useRouter();
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ const SignIn = () => {
     try {
       const userCredential = await loginUser(email, password);
       console.log("User signed in:", userCredential.user);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }

@@ -2,6 +2,7 @@
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
   User,
   UserCredential,
 } from "firebase/auth";
@@ -15,9 +16,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser?.email) {
-        setUser(currentUser);
-      }
+      setUser(currentUser ?? null);
       setLoading(false);
     });
     return () => unsubscribe();
@@ -31,18 +30,21 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  // logout user
+  const logoutUser = () => {
+    return signOut(auth);
+  };
+
   const userInfo = {
     user,
     setUser,
     loading,
+    logoutUser,
     setLoading,
     loginUser,
   };
-  return (
-    <div>
-      <AuthContext value={userInfo}>{children}</AuthContext>
-    </div>
-  );
+
+  return <AuthContext value={userInfo}>{children}</AuthContext>;
 };
 
 export default AuthProvider;

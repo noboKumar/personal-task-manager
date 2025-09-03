@@ -1,4 +1,4 @@
-import React from "react";
+import AuthButton from "./ui/AuthButton";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
@@ -14,9 +14,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <Link href={"/signin"}>
-            <Button variant="outline">Sign In</Button>
-          </Link>
+          <AuthButton />
         </div>
       </div>
     </div>
